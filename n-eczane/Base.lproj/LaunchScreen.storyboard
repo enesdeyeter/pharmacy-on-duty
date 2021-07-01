@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-Xz-esT">
+                                <rect key="frame" x="87" y="328" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="3D5-tD-Rl3"/>
+                                    <constraint firstAttribute="height" constant="240" id="LHs-u0-l1F"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nöbetçi Eczaneler" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKf-n7-Oxs">
+                                <rect key="frame" x="20" y="781" width="374" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="R65-t2-nIa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2021" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xI3-Wr-AHz">
+                                <rect key="frame" x="20" y="806" width="374" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="rar-nC-N4u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" red="0.94539588689804077" green="0.1210905984044075" blue="0.033836036920547485" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Ld-Xz-esT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0vQ-o6-pJ5"/>
+                            <constraint firstItem="5Ld-Xz-esT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ARv-HG-SSa"/>
+                            <constraint firstItem="XKf-n7-Oxs" firstAttribute="trailing" secondItem="xI3-Wr-AHz" secondAttribute="trailing" id="M9f-9D-IIp"/>
+                            <constraint firstItem="5Ld-Xz-esT" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Qer-XQ-c4l"/>
+                            <constraint firstItem="XKf-n7-Oxs" firstAttribute="centerX" secondItem="5Ld-Xz-esT" secondAttribute="centerX" id="TNH-bD-lcg"/>
+                            <constraint firstItem="XKf-n7-Oxs" firstAttribute="leading" secondItem="xI3-Wr-AHz" secondAttribute="leading" id="Zz1-ee-Qw6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xI3-Wr-AHz" secondAttribute="bottom" constant="24" id="cOB-kf-ZIP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XKf-n7-Oxs" secondAttribute="bottom" constant="49" id="eyx-9E-Toj"/>
+                            <constraint firstItem="XKf-n7-Oxs" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="lZX-tq-bae"/>
+                            <constraint firstItem="5Ld-Xz-esT" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xkr-za-rGo"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon" width="1024" height="1024"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

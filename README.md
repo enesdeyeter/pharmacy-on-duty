@@ -1,4 +1,4 @@
-# Nönetçi Eczaneler Uygulaması
+# Nöbetçi Eczaneler Uygulaması
 Pharmacies on duty in Turkey
 
 - Bulunduğunuz konumdan nöbetçi eczaneye yol tarifi

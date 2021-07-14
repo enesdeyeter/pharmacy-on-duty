@@ -26,10 +26,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func btnSearchButton(_ sender: Any) {
         if txtSehir.text?.isEmpty != true {
             il.removeAll()
-            il = txtSehir.text!.lowercased()
+            il = txtSehir.text!
             title = "\(il) Nöbetçi Eczaneler".capitalized
             
-            print("btn \(il)")
+            il = try! txtSehir.text!.lowercased().convertedToSlug()
+            
+            print("temizlenmiş il adı --> \(il)")
             txtSehir.text = ""
             
             nameArray.removeAll()
@@ -48,7 +50,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             alert.addAction(UIAlertAction(title: "Tamam", style: .default, handler: { (action: UIAlertAction!) in
                   print("uyari kapatıldı")
             }))
-
             present(alert, animated: true, completion: nil)
         }
         
@@ -57,7 +58,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "dd MMMM"
@@ -67,7 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let utcTimeZoneStr = formatter.string(from: date)
         print("geçerli tarih: \(utcTimeZoneStr)")
         
-        currDate.text = "\(utcTimeZoneStr) tarihi için nönetçi eczaneler"
+        currDate.text = "\(utcTimeZoneStr) tarihi için nöbetçi eczaneler"
         
         title = "\(il.capitalized) Nöbetçi Eczaneler".capitalized
         print("viewdidload \(il)")
@@ -84,7 +84,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let headers = [
             "content-type": "application/json",
-            "authorization": "apikey 5gyLhZBpLq69c6wp7O6PGb:7A1CBSyOom7sGrGIfRVas6"
+            "authorization": "apikey 0NzFnjXImTVOzICi0lqYLj:6EyugUS3Pw5Eg4zZSpt7TQ"
         ]
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://api.collectapi.com/health/dutyPharmacy?il=\(il)")! as URL,
@@ -157,13 +157,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.lblName.text = nameArray[indexPath.row].uppercased()
         
         if cell.lblName.text!.hasSuffix("Sİ") || cell.lblName.text!.hasSuffix("SI")  == true {
-            print("including the word")
+//            print("including the word")
         }
         else{
             cell.lblName.text!.append(" ECZANESİ")
         }
         
-        cell.lblDist.text = distArray[indexPath.row].capitalized
+        cell.lblDist.text = "・" + distArray[indexPath.row].capitalized
         cell.lblAddress.text = addressArray[indexPath.row].capitalized
         
         return cell
@@ -182,5 +182,48 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let navController = UINavigationController(rootViewController: detailVC)
         self.present(navController, animated:true, completion: nil)
+    }
+}
+
+enum SlugConversionError: Error {
+    case failedToConvert
+}
+
+extension String {
+    private static let slugSafeCharacters = CharacterSet(charactersIn: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-")
+
+    private func convertedToSlugBackCompat() -> String? {
+        if let data = self.data(using: .ascii, allowLossyConversion: true) {
+            if let str = String(data: data, encoding: .ascii) {
+                let urlComponents = str.lowercased().components(separatedBy: String.slugSafeCharacters.inverted)
+                return urlComponents.filter { $0 != "" }.joined(separator: "-")
+            }
+        }
+        return nil
+    }
+
+    public func convertedToSlug() throws -> String {
+        var result: String? = nil
+
+        #if os(Linux)
+            result = convertedToSlugBackCompat()
+        #else
+            if #available(OSX 10.11, *) {
+                if let latin = self.applyingTransform(StringTransform("Any-Latin; Latin-ASCII; Lower;"), reverse: false) {
+                    let urlComponents = latin.components(separatedBy: String.slugSafeCharacters.inverted)
+                    result = urlComponents.filter { $0 != "" }.joined(separator: "-")
+                }
+            } else {
+                result = convertedToSlugBackCompat()
+            }
+        #endif
+
+        if let result = result {
+            if result.count > 0 {
+                return result
+            }
+        }
+
+        throw SlugConversionError.failedToConvert
     }
 }

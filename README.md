@@ -5,4 +5,4 @@ Pharmacies on duty in Turkey
 - Türkiye'deki iller için nöbetçi eczaneleri listeleyebilirsiniz
 
 ### Ekran görüntüleri
-![n1](https://user-images.githubusercontent.com/27866989/124117461-d9cdb580-da78-11eb-8e49-9d6fe4f6861a.jpg)
+![g2](https://user-images.githubusercontent.com/27866989/125645312-48d475e1-04db-4b89-9689-f9e2e16784f8.jpg)
